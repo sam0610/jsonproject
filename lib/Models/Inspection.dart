@@ -55,13 +55,13 @@ factory Coord.fromJson(Map<String,dynamic> json)  =>_
 
 class Main extends Object{
   String maind;
-  Main(this.maind;);
+  Main(this.maind);
 
   factory Main.fromJson(Map<String,dynamic> json)
 }
 
 class Weather extends Object{
-  Weather(this.weather3d;);
+  Weather(this.weather3d);
   String weather3d;
 
   factory Weather.fromJson(Map<String,dynamic> json)
