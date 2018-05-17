@@ -7,58 +7,70 @@ part of 'Inspection.dart';
 // **************************************************************************
 
 Inspection _$InspectionFromJson(Map<String, dynamic> json) => new Inspection(
-    json['date'] == null ? null : DateTime.parse(json['date'] as String),
-    json['name'] as String,
-    json['gender'] as String,
-    json['count'] as int,
-    json['yob'] as String,
-    (json['list'] as List)
-        ?.map((e) =>
-            e == null ? null : new City.fromJson(e as Map<String, dynamic>))
-        ?.toList());
+    inspectionDate: json['inspectionDate'] == null
+        ? null
+        : DateTime.parse(json['inspectionDate'] as String),
+    staffName: json['staffName'] as String,
+    arrivedTime: json['arrivedTime'] as String,
+    leaveTime: json['leaveTime'] as String,
+    foundLocation: json['foundLocation'] as String,
+    postName: json['postName'] as String,
+    guestsProportion: json['guestsProportion'] as String,
+    situationRemark: json['situationRemark'] as String,
+    userid: json['userid'] as String,
+    id: json['id'] as String,
+    grooming: json['grooming'] == null
+        ? null
+        : new Grooming.fromJson(json['grooming'] as Map<String, dynamic>));
 
 abstract class _$InspectionSerializerMixin {
-  DateTime get date;
-  String get name;
-  String get gender;
-  int get count;
-  String get yob;
-  List<City> get cities;
+  String get id;
+  DateTime get inspectionDate;
+  String get arrivedTime;
+  String get leaveTime;
+  String get staffName;
+  String get postName;
+  String get foundLocation;
+  String get guestsProportion;
+  String get situationRemark;
+  String get userid;
+  Grooming get grooming;
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'date': date?.toIso8601String(),
-        'name': name,
-        'gender': gender,
-        'count': count,
-        'yob': yob,
-        'list': cities
+        'id': id,
+        'inspectionDate': inspectionDate?.toIso8601String(),
+        'arrivedTime': arrivedTime,
+        'leaveTime': leaveTime,
+        'staffName': staffName,
+        'postName': postName,
+        'foundLocation': foundLocation,
+        'guestsProportion': guestsProportion,
+        'situationRemark': situationRemark,
+        'userid': userid,
+        'grooming': grooming
       };
 }
 
-City _$CityFromJson(Map<String, dynamic> json) => new City(
-    json['id'] as int,
-    json['name'] as String,
-    json['coord'] == null
-        ? null
-        : new Coord.fromJson(json['coord'] as Map<String, dynamic>),
-    json['main'] == null
-        ? null
-        : new Main.fromJson(json['main'] as Map<String, dynamic>),
-    (json['weathers'] as List)
-        ?.map((e) =>
-            e == null ? null : new Weather.fromJson(e as Map<String, dynamic>))
-        ?.toList());
+Grooming _$GroomingFromJson(Map<String, dynamic> json) => new Grooming(
+    groomingScore: json['groomingScore'] as int,
+    hairScore: json['hairScore'] as int,
+    uniformScore: json['uniformScore'] as int,
+    decorationScore: json['decorationScore'] as int,
+    maskCleanScore: json['maskCleanScore'] as int,
+    maskWearScore: json['maskWearScore'] as int);
 
-abstract class _$CitySerializerMixin {
-  int get id;
-  String get name;
-  Coord get coord;
-  Main get main;
-  List<Weather> get weathers;
+abstract class _$GroomingSerializerMixin {
+  int get groomingScore;
+  int get hairScore;
+  int get uniformScore;
+  int get decorationScore;
+  int get maskWearScore;
+  int get maskCleanScore;
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'id': id,
-        'name': name,
-        'coord': coord,
-        'main': main,
-        'weathers': weathers
+        'groomingScore': groomingScore,
+        'hairScore': hairScore,
+        'uniformScore': uniformScore,
+        'decorationScore': decorationScore,
+        'maskWearScore': maskWearScore,
+        'maskCleanScore': maskCleanScore
       };
 }

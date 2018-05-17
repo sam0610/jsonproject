@@ -3,66 +3,56 @@ import 'package:json_annotation/json_annotation.dart';
 //flutter packages pub run build_runner watch
 part 'Inspection.g.dart';
 
+//run code => flutter packages pub run build_runner build
 @JsonSerializable()
-class Inspection extends Object{
-
-  DateTime date;
-  String name;
-  String gender;
-  int count;
-  @JsonKey(nullable: true)
-  String yob;
-
-  @JsonKey(name:"list")
-  final List<City>cities;
-
+class Inspection extends Object with _$InspectionSerializerMixin {
+  final String id;
+  final DateTime inspectionDate;
+  final String arrivedTime;
+  final String leaveTime;
+  final String staffName;
+  final String postName;
+  final String foundLocation;
+  final String guestsProportion;
+  @JsonKey(includeIfNull: true)
+  final String situationRemark;
+  final String userid;
+  final Grooming grooming;
 
   Inspection(
-      this.date,
-      this.name,
-      this.gender,
-      this.count,
-      this.yob,
-      this.cities);
+      {this.inspectionDate,
+      this.staffName,
+      this.arrivedTime,
+      this.leaveTime,
+      this.foundLocation,
+      this.postName,
+      this.guestsProportion,
+      this.situationRemark,
+      this.userid,
+      this.id,
+      this.grooming});
 
-
-  factory Inspection.fromJson(Map<String,dynamic> json) => _$InspectionFromJson(json);
-
+  factory Inspection.fromJson(Map<String, dynamic> json) =>
+      _$InspectionFromJson(json);
 }
 
 @JsonSerializable()
-class City extends Object{
-  int id;
-  String name;
+class Grooming extends Object with _$GroomingSerializerMixin {
+  int groomingScore;
+  int hairScore;
+  int uniformScore;
+  int decorationScore;
+  int maskWearScore;
+  int maskCleanScore;
 
-  City(this.id, this.name, this.coord, this.main, this.weathers);
+  Grooming(
+      {this.groomingScore = 0,
+      this.hairScore = 0,
+      this.uniformScore = 0,
+      this.decorationScore = 0,
+      this.maskCleanScore = 0,
+      this.maskWearScore = 0});
 
-  Coord coord;
-  Main main;
-  List<Weather> weathers;
-
-  factory City.fromJson(Map<String,dynamic> json) => _$CityFromJson(json)
-
-}
-
-class Coord extends Object{
-  int in2;
-Coord(this.in2);
-
-
-factory Coord.fromJson(Map<String,dynamic> json)  =>_
-}
-
-class Main extends Object{
-  String maind;
-  Main(this.maind);
-
-  factory Main.fromJson(Map<String,dynamic> json)
-}
-
-class Weather extends Object{
-  Weather(this.weather3d);
-  String weather3d;
-
-  factory Weather.fromJson(Map<String,dynamic> json)
+  factory Grooming.fromJson(Map<String, dynamic> json) =>
+      _$GroomingFromJson(json);
 }
